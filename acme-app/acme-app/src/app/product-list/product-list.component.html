@@ -1,1 +1,29 @@
-<p>product-list works!</p>
+<br>
+<div>
+    
+    <p class="bg-primary">Product List</p><br>
+    <button onclick="showImageHandler()">Show Image</button>
+    <div class="container">
+        <table class="table">
+            <th>Image</th>
+            <th>Product</th>
+                <th>Code</th>
+                <th>Available</th>
+                <th>Price</th>
+                <th>5 Star Rating</th>
+
+                <tbody> 
+                <tr *ngFor = "let product of Products">
+                    <th scope="row"><img src="{{product.imageUrl}}"></th>
+                    <th>{{product.productName}}</th>  
+                    <th>{{product.productCode}}</th> 
+                    <th>{{product.releaseDate}}</th> 
+                    <th>{{product.price}}</th> 
+                    <th>{{product.starRating}}</th> 
+                </tr>
+                </tbody>
+                
+        </table>
+    </div>
+
+</div>

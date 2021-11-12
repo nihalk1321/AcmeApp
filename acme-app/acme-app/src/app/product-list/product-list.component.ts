@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import PRODUCT from './/products.json';
+
+interface Product{
+  productName:string;
+  productCode:string;
+  releaseDate:string;
+  price:string;
+  starRating : string;
+  imageUrl:any;
+}
 
 @Component({
   selector: 'app-product-list',
@@ -6,10 +16,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  
+  Products : Product[]=PRODUCT;
+  
+  constructor() {}
 
-  constructor() { }
+  showImageHandler(){
+  
+  }
 
   ngOnInit(): void {
+  
   }
 
 }
