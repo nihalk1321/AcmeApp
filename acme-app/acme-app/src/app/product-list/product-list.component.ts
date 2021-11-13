@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import PRODUCT from './/products.json';
+
 
 interface Product {
+  productId:number;
   productName: string;
   productCode: string;
   releaseDate: string;
@@ -17,20 +18,19 @@ interface Product {
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
-  Products: Product[] = PRODUCT;
+  showImage=false;
+  Products: Product[];
 
   constructor(private productService: ProductService ) { 
     this.Products = [];
-
   }
-
   
+  showImageHandler() {}
 
-
-  showImageHandler() {
-
+  toggleImage(){
+    this.showImage=!this.showImage;
   }
+
 
   ngOnInit(): void {
     this.productService.getProductData()

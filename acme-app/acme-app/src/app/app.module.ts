@@ -16,7 +16,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,ProductListComponent,WelcomeComponent,StarComponent
+    AppComponent,ProductListComponent,WelcomeComponent,StarComponent,ProductDetailComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(RouteArrays),HttpClientModule

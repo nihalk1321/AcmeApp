@@ -1,11 +1,10 @@
 <br>
-<div>
+<div class="card">
     
     <p class="bg-primary">Product List</p><br>
-    <button onclick="showImageHandler()">Show Image</button>
     <div class="container">
         <table class="table">
-            <th>Image</th>
+                        <button class='btn btn-primary' (click)="toggleImage()">{{showImage ? 'Hide':'Show'}} Image</button>
             <th>Product</th>
                 <th>Code</th>
                 <th>Available</th>
@@ -14,12 +13,14 @@
 
                 <tbody> 
                 <tr *ngFor = "let product of Products">
-                    <th scope="row"><img src="{{product.imageUrl}}"></th>
-                    <th>{{product.productName}}</th>  
+
+                    <!-- <th scope="row"><img src="{{product.imageUrl}}" width="80"></th> -->
+                    <td><img *ngIf='showImage' [src]='product.imageUrl' width="80"></td>
+                    <th><a [routerLink]="['/product',product.productId]">{{product.productName}}</a></th>  
                     <th>{{product.productCode}}</th> 
                     <th>{{product.releaseDate}}</th> 
                     <th>{{product.price}}</th> 
-                    <!-- <th>{{product.starRating}}</th>  -->
+                 <th>{{product.starRating}}</th>  
 
                     
 

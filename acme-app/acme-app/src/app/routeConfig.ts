@@ -14,7 +14,7 @@ export const RouteArrays:Routes = [
         component: ProductListComponent
     },
     {
-        path:'product-detail',
+        path:'product/:productId',
         component:ProductDetailComponent
     },
     {
