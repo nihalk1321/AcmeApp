@@ -17,5 +17,8 @@ export class StarComponent {
         this.rating="";
         this.clickRating=new EventEmitter<number>();
     }
+
+
+    
    
 }

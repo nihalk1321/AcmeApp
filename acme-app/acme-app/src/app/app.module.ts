@@ -27,4 +27,5 @@ import { StarComponent } from './product-detail/StarComponent';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
