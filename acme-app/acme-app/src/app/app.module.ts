@@ -10,6 +10,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RouteArrays } from './routeConfig';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { StarComponent } from './product-detail/StarComponent';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     WelcomeComponent,
     ProductListComponent,
     ProductDetailComponent,
-    NotfoundComponent
+    NotfoundComponent,StarComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(RouteArrays),CommonModule,FormsModule

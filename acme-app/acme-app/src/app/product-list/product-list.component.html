@@ -19,7 +19,12 @@
                     <th>{{product.productCode}}</th> 
                     <th>{{product.releaseDate}}</th> 
                     <th>{{product.price}}</th> 
-                    <th>{{product.starRating}}</th> 
+                    <!-- <th>{{product.starRating}}</th>  -->
+
+                   <th> <ht-star [rating]="product.starRating"></ht-star></th>
+                
+
+
                 </tr>
                 </tbody>
                 
