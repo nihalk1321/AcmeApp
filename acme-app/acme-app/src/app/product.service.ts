@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
-
+import { catchError, map, mapTo, tap } from 'rxjs/operators'
 
 interface Product {
   productId: number;
@@ -25,11 +25,11 @@ export class ProductService {
 
   url_singleProduct = "http://localhost:4200/product/1"
 
-  product: Product[];
+  // product: Product[];
 
   constructor(private httpClient: HttpClient) {
     console.log("From Service")
-    this.product = [];
+    // this.product = [];
   }
 
   HttpHeaders = {
@@ -38,20 +38,23 @@ export class ProductService {
     })
   }
 
-  getProductData(): Observable<any> {
+  getProductData(): Observable<Product[]> {
 
     return this.httpClient.get<any>(this.url);
 
   }
 
-  getSingleProduct(id: any): Observable<any> {
+  getSingleProduct(id: number): Observable<Product | undefined> {
     // return this.httpClient.get<any>(this.url)
     //   .sourcepipe(filter((p: { productId: any; }) => p.productId === id));
 
-    var newProduct = this.product.filter(function (ele: { productId: any; }) {
-      return ele.productId == id;
-    })
-    return this.httpClient.get<any>(this.url);
+    // var newProduct = this.product.filter(function (ele: { productId: any; }) {
+    //   return ele.productId == id;
+    // })
+    // return this.httpClient.get<any>(this.url);
+
+    return this.getProductData()
+      .pipe(map((product:Product[])=>product.find(p=>p.productId==id)));
 
   }
 

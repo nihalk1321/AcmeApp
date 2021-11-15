@@ -19,7 +19,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppComponent,ProductListComponent,WelcomeComponent,StarComponent,ProductDetailComponent
   ],
   imports: [
-    BrowserModule,RouterModule.forRoot(RouteArrays),HttpClientModule
+    BrowserModule,RouterModule.forRoot(RouteArrays),HttpClientModule,FormsModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

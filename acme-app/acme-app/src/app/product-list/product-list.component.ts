@@ -3,7 +3,7 @@ import { ProductService } from '../product.service';
 
 
 interface Product {
-  productId:number;
+  productId: number;
   productName: string;
   productCode: string;
   releaseDate: string;
@@ -18,26 +18,45 @@ interface Product {
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  showImage=false;
+  showImage = false;
+  imageWidth = 50;
+  imageMargin = 2;
   Products: Product[];
+  filteredProduct: Product[] = [];
 
-  constructor(private productService: ProductService ) { 
+  constructor(private productService: ProductService) {
     this.Products = [];
   }
-  
-  showImageHandler() {}
 
-  toggleImage(){
-    this.showImage=!this.showImage;
+  _listFilter = "";
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+
+    this.filteredProduct = this.listFilter ? this.performFilter(this.listFilter): this.Products;
+  
+  }
+
+  performFilter(filterBy: string): Product[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.Products.filter((product: Product) => product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  toggleImage() {
+    this.showImage = !this.showImage;
   }
 
 
   ngOnInit(): void {
     this.productService.getProductData()
-    .subscribe((data) =>{
-      console.log(data);
-      this.Products = data;
-    })
+      .subscribe((data) => {
+        console.log(data);
+        this.Products = data;
+      })
 
   }
 

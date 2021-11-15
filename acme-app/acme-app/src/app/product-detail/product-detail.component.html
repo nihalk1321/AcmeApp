@@ -10,8 +10,14 @@
     <p>Availability:{{Products.releaseDate}}</p>
     <p>Price:{{Products.price}}</p>
     <p>5 Star Rating:<ht-star [rating]="Products.starRating"></ht-star></p> -->
-
-    
+<div *ngIf='Products'>
+    <p>Name:</p>
+    <p>Code:</p>
+    <p>Description:</p>
+    <p>Availability:</p>
+    <p>Price:</p>
+    <p>5 Star Rating:</p>
+</div>
 
 <div><p>
     <a class='btn btn-default'(click)="onBack()">Back</a>
