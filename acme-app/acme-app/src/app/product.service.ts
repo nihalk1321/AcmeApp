@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { ProductListComponent } from './product-list/product-list.component';
-import { catchError, map, mapTo, tap } from 'rxjs/operators'
+import { catchError, filter, map, mapTo, tap } from 'rxjs/operators'
 
 interface Product {
   productId: number;
@@ -39,12 +39,10 @@ export class ProductService {
   }
 
   getProductData(): Observable<Product[]> {
-
     return this.httpClient.get<any>(this.url);
-
   }
 
-  getSingleProduct(id: number): Observable<Product | undefined> {
+  getSingleProduct(id: any): Observable<Product | undefined> {
     // return this.httpClient.get<any>(this.url)
     //   .sourcepipe(filter((p: { productId: any; }) => p.productId === id));
 
@@ -53,8 +51,17 @@ export class ProductService {
     // })
     // return this.httpClient.get<any>(this.url);
 
-    return this.getProductData()
-      .pipe(map((product:Product[])=>product.find(p=>p.productId==id)));
+    // return this.getProductData()
+    // .subscribe((data)=>
+    // data.filter(p=> {return p.productId==id}))
+  
+      // .pipe(filter(p=> p.==id));
+
+
+      return this.getProductData().pipe(
+        map((products: Product[]) => products.find(p => p.productId == id))
+        // p.productId === id
+      );
 
   }
 

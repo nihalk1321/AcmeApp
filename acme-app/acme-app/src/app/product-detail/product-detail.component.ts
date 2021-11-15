@@ -19,12 +19,23 @@ interface Product {
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  Products!: Product;
+  Products: any ;
+
+  param:any ;
 
   
 
   constructor(private productService: ProductService, private _router: Router, private route : ActivatedRoute) {
-  
+  }
+
+  ngOnInit(): void { 
+    this.param = this.route.snapshot.paramMap.get('productId');
+    this.productService.getSingleProduct(this.param)
+      .subscribe((data) => {
+        // console.log(data);
+        this.Products = data;
+      })
+      console.log("Variable - "+this.Products);
   }
 
   getSingleProduct(id: number) {
@@ -34,16 +45,8 @@ export class ProductDetailComponent implements OnInit {
 
         console.log("Output of getSingleProduct " + this.Products);
       })
-
+      console.log("Inside getSingleProduct in productDetails")
     // this.productService.getSingleProduct(id).subscribe(data=>this.product==data)
-  }
-
-  ngOnInit(): void { 
-    const param = this.route.snapshot.paramMap.get('id');
-    if (param){
-      const id = +param;
-      this.getSingleProduct(id);
-    }
   }
 
   onBack() {
